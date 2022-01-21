@@ -16,6 +16,23 @@ const products_reducer = (state, action) => {
   if (action.type === SIDEBAR_CLOSE) {
     return { ...state, isSidebarOpen: false }
   }
+  if (action.type === GET_PRODUCTS_BEGIN) {
+    return { ...state, loading_products: true }
+  }
+  if (action.type === GET_PRODUCTS_SUCCESS) {
+    const featuredProducts = action.payload.filter(
+      (product) => product.featured === true
+    )
+    return {
+      ...state,
+      loading_products: false,
+      products: action.payload,
+      featuredProducts,
+    }
+  }
+  if (action.type === GET_PRODUCTS_ERROR) {
+    return { ...state, error_products: true, loading_products: false }
+  }
   return state
   throw new Error(`No Matching "${action.type}" - action type`)
 }
