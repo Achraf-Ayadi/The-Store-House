@@ -23,7 +23,7 @@ const SingleProductPage = () => {
   } = useProductsContext()
   const { id } = useParams()
   const history = useHistory()
-
+  // console.log(singleProduct)
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`)
   }, [id])

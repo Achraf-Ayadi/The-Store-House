@@ -18,7 +18,7 @@ const initialState = {
   gridView: true,
   sort: 'Price(lowest)',
   filters: {
-    text: ' ',
+    text: '',
     category: 'all',
     company: 'all',
     color: 'all',
@@ -59,7 +59,7 @@ export const FilterProvider = ({ children }) => {
     }
     if (name === 'color') {
       value = e.target.dataset.color
-      console.log(value)
+      // console.log(value)
     }
     if (name === 'price') {
       value = Number(value)
@@ -68,6 +68,7 @@ export const FilterProvider = ({ children }) => {
       value = e.target.checked
     }
     dispatch({ type: UPDATE_FILTERS, payload: { value, name } })
+
     // console.log(name, value)
   }
   const setGridView = () => {
@@ -77,10 +78,11 @@ export const FilterProvider = ({ children }) => {
     dispatch({ type: SET_LISTVIEW })
   }
 
-  const filterProduct = () => {}
   const clearFilter = () => {
     dispatch({ type: CLEAR_FILTERS })
   }
+
+  // console.log(state.allProducts)
   return (
     <FilterContext.Provider
       value={{
@@ -89,7 +91,6 @@ export const FilterProvider = ({ children }) => {
         setListView,
         updateSort,
         updateFilter,
-        filterProduct,
         clearFilter,
       }}
     >
