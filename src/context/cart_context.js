@@ -10,9 +10,17 @@ import {
 import { useFilterContext } from './filter_context'
 import { useProductsContext } from './products_context'
 
+const getLocalStorage = () => {
+  let cart = localStorage.getItem('cart')
+  if (cart) {
+    return JSON.parse(localStorage.getItem('cart'))
+  } else {
+    return []
+  }
+}
 const initialState = {
-  cart: [],
-  totalItem: 0,
+  cart: getLocalStorage(),
+  totalItems: 0,
   totalAmount: 0,
   shippingfree: 534,
 }
@@ -24,15 +32,39 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (id, color, amount, singleProduct) => {
     // console.log(singleProduct)
-    dispatch({ type: ADD_TO_CART, payload: {id, color, amount, singleProduct} })
+    dispatch({
+      type: ADD_TO_CART,
+      payload: { id, color, amount, singleProduct },
+    })
   }
 
-  const removeItem = () => {}
-  const toggleItemAmount = () => {}
-  const clearCart = () => {}
+  const removeItem = (id) => {
+    dispatch({ type: REMOVE_CART_ITEM, payload: id })
+  }
+
+  const clearCart = () => {
+    dispatch({ type: CLEAR_CART })
+  }
+
+  useEffect(() => {
+    dispatch({ type: COUNT_CART_TOTALS })
+    localStorage.setItem('cart', JSON.stringify(state.cart))
+  }, [state.cart])
+
+  const toggleItemAmount = (id, value) => {
+    dispatch({ type: TOGGLE_CART_ITEM_AMOUNT, payload: { id, value } })
+    console.log(id, value)
+    console.log(state.cart)
+  }
   return (
     <CartContext.Provider
-      value={{ ...state, removeItem, clearCart, toggleItemAmount, addToCart }}
+      value={{
+        ...state,
+        removeItem,
+        clearCart,
+        toggleItemAmount,
+        addToCart,
+      }}
     >
       {children}
     </CartContext.Provider>

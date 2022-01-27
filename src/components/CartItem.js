@@ -4,31 +4,35 @@ import { formatPrice } from '../utils/helpers'
 import AmountButtons from './AmountButtons'
 import { FaTrash } from 'react-icons/fa'
 import { useCartContext } from '../context/cart_context'
-const CartItem = () => {
-  const { cart, removeItem } = useCartContext()
-  return cart.map((item) => {
-    const { id, name, color, amount, image, price, max } = item
-    return (
-      <Wrapper key={id}>
-        <div className='title'>
-          <img src={image} alt={name} />
-          <div>
-            <h5 className='name'>{name}</h5>
-            <p className='color'>
-              color : <span style={{ backgroundColor: color }}></span>
-            </p>
-            <h5 className='price-small'>{formatPrice(price)}</h5>
-          </div>
+const CartItem = ({ id, name, color, amount, image, price, max }) => {
+  const { removeItem, toggleItemAmount } = useCartContext()
+
+  const increase = () => {
+    toggleItemAmount(id, 'inc')
+  }
+  const decrease = () => {
+    toggleItemAmount(id, 'dec')
+  }
+  return (
+    <Wrapper key={id}>
+      <div className='title'>
+        <img src={image} alt={name} />
+        <div>
+          <h5 className='name'>{name}</h5>
+          <p className='color'>
+            color : <span style={{ backgroundColor: color }}></span>
+          </p>
+          <h5 className='price-small'>{formatPrice(price)}</h5>
         </div>
-        <h5 className='price'> {formatPrice(price)}</h5>
-        <AmountButtons amount={amount}  />
-        <h5 className='subtotal'> {formatPrice(price * amount)}</h5>
-        <button className='remove-btn' onClick={removeItem}>
-          <FaTrash />
-        </button>
-      </Wrapper>
-    )
-  })
+      </div>
+      <h5 className='price'> {formatPrice(price)}</h5>
+      <AmountButtons amount={amount} increase={increase} decrease={decrease} />
+      <h5 className='subtotal'> {formatPrice(price * amount)}</h5>
+      <button className='remove-btn' onClick={() => removeItem(id)}>
+        <FaTrash />
+      </button>
+    </Wrapper>
+  )
 }
 
 const Wrapper = styled.article`
