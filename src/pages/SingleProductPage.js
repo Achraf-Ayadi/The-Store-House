@@ -26,6 +26,7 @@ const SingleProductPage = () => {
   // console.log(singleProduct)
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`)
+    // eslint-disable-next-line
   }, [id])
 
   useEffect(() => {
@@ -34,15 +35,15 @@ const SingleProductPage = () => {
         history.push('/')
       }, 3000)
     }
+    // eslint-disable-next-line
   }, [error])
 
   const {
     stock,
     price,
-    shipping,
+
     company,
-    colors,
-    category,
+
     images,
     reviews,
     stars,

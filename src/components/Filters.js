@@ -10,7 +10,7 @@ const Filters = () => {
     filters: {
       text,
       category,
-      company,
+
       color,
       price,
       maxPrice,
@@ -18,7 +18,7 @@ const Filters = () => {
       shipping,
     },
     updateFilter,
-    filterProducts,
+
     clearFilter,
   } = useFilterContext()
 

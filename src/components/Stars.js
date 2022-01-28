@@ -17,31 +17,7 @@ const Stars = ({ stars, reviews }) => {
     )
   })
   return (
-    <Wrapper>
-      <div className='stars'>{tempstars}</div>
-      <div className='reviews'>(reviews : {reviews} )</div>
-    </Wrapper>
-  )
-}
-
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  span {
-    color: #ffb900;
-    font-size: 1rem;
-    margin-right: 0.25rem;
-  }
-  p {
-    margin-left: 0.5rem;
-    margin-bottom: 0;
-  }
-  margin-bottom: 0.5rem;
-`
-export default Stars
-
-{
-  /* <span>
+    /* <span>
           {stars >= 1 ? (
             <BsStarFill />
           ) : stars >= 0.5 ? (
@@ -86,4 +62,26 @@ export default Stars
             <BsStar />
           )}
         </span> */
+
+    <Wrapper>
+      <div className='stars'>{tempstars}</div>
+      <div className='reviews'>(reviews : {reviews} )</div>
+    </Wrapper>
+  )
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  span {
+    color: #ffb900;
+    font-size: 1rem;
+    margin-right: 0.25rem;
+  }
+  p {
+    margin-left: 0.5rem;
+    margin-bottom: 0;
+  }
+  margin-bottom: 0.5rem;
+`
+export default Stars

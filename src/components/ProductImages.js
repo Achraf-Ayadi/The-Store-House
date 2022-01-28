@@ -9,7 +9,7 @@ const ProductImages = ({ images }) => {
       <img src={mainImage.url} alt='main' className='main' />
       <div className='gallery'>
         {images.map((image, index) => {
-          const { id, url, filename } = image
+          const { url, filename } = image
           return (
             <img
               src={url}

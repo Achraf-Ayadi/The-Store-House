@@ -9,42 +9,44 @@ import {
   HomePage,
   ProductsPage,
   SingleProductPage,
-  // AuthWrapper,
-  // PrivateRoute,
+  AuthWrapper,
+  PrivateRoute,
 } from './pages/index'
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Sidebar />
-      <Switch>
-        <Route exact path='/'>
-          <HomePage />
-        </Route>
-        <Route exact path='/about'>
-          <AboutPage />
-        </Route>
-        <Route exact path='/products'>
-          <ProductsPage />
-        </Route>
-        <Route
-          exact
-          path='/products/:id'
-          children={<SingleProductPage />}
-        ></Route>
-        <Route exact path='/checkout'>
-          <CheckoutPage />
-        </Route>
-        <Route exact path='/cart'>
-          <CartPage />
-        </Route>
-        <Route path='*'>
-          <ErrorPage />
-        </Route>
-      </Switch>
-      <Footer />
-    </Router>
+    <AuthWrapper>
+      <Router>
+        <Navbar />
+        <Sidebar />
+        <Switch>
+          <Route exact path='/'>
+            <HomePage />
+          </Route>
+          <Route exact path='/about'>
+            <AboutPage />
+          </Route>
+          <Route exact path='/products'>
+            <ProductsPage />
+          </Route>
+          <Route
+            exact
+            path='/products/:id'
+            children={<SingleProductPage />}
+          ></Route>
+          <PrivateRoute exact path='/checkout'>
+            <CheckoutPage />
+          </PrivateRoute>
+          <Route exact path='/cart'>
+            <CartPage />
+          </Route>
+          <Route path='*'>
+            <ErrorPage />
+          </Route>
+        </Switch>
+        <Footer />
+      </Router>
+    </AuthWrapper>
   )
 }
 

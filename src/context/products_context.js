@@ -58,6 +58,7 @@ export const ProductsProvider = ({ children }) => {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line
     fetchProducts(url)
   }, [])
 

@@ -7,8 +7,8 @@ import {
   CLEAR_CART,
   COUNT_CART_TOTALS,
 } from '../actions'
-import { useFilterContext } from './filter_context'
-import { useProductsContext } from './products_context'
+// import { useFilterContext } from './filter_context'
+// import { useProductsContext } from './products_context'
 
 const getLocalStorage = () => {
   let cart = localStorage.getItem('cart')
