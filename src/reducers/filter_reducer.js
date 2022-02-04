@@ -102,9 +102,9 @@ const filter_reducer = (state, action) => {
   if (action.type === CLEAR_FILTERS) {
     return {
       ...state,
-      ...state.filters,
       filters: {
-        text: ' ',
+        ...state.filters,
+        text: '',
         category: 'all',
         company: 'all',
         color: 'all',
@@ -113,7 +113,7 @@ const filter_reducer = (state, action) => {
       },
     }
   }
-  
+
   throw new Error(`No Matching "${action.type}" - action type`)
 }
 
