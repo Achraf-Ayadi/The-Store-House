@@ -89,7 +89,6 @@ const cart_reducer = (state, action) => {
     return { ...state, totalItems, totalAmount }
   }
 
-  
   throw new Error(`No Matching "${action.type}" - action type`)
 }
 
